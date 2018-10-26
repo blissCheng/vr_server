@@ -1,0 +1,6 @@
+{
+	"presets": [
+    "preset-es2015",
+    "preset-stage-3"
+	]
+}
