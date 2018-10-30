@@ -45,9 +45,6 @@ app.use(bodyParser({
 //路由
 app.use(require('./routers/login/signup.js').routes());
 
-app.use(router.routes())
-    .use(router.allowedMethods());
-
 app.listen(9000);
 
 
