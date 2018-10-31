@@ -23,7 +23,7 @@ const sessionMysqlConfig = {
 app.use(session({
   key: 'USER_SID',
   store: new MysqlStore(sessionMysqlConfig)
-}))
+}));
 
 //跨域
 app.use(cors());
@@ -40,7 +40,7 @@ app.use(staticCache(path.join(__dirname, './images'), { dynamic: true }, {
 //解析表单
 app.use(bodyParser({
   formLimit: '1mb'
-}))
+}));
 
 //路由
 app.use(require('./routers/login/signup.js').routes());

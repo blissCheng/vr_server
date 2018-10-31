@@ -42,10 +42,32 @@ class Methods {
   constructor() {
 
   }
-
-  insertUser = () => {
-    
+  //注册用户
+  insertUser = (value) => {
+    let _sql = 'insert into users set name=?,pass=?,avator=?,moment=?;';
+    return query(_sql, value);
+  };
+  //删除用户
+  deleteUser = (id) => {
+    let _sql = `delete from users where id=${id};`;
+    return query(_sql)
   }
+  //查找用户
+  findUser = (name) => {
+    let _sql = `select * from users where name=${name};`;
+    return query(_sql)
+  }
+  //新增文章
+  insertPost = (value) => {
+    let _sql = 'insert into posts set name=?createTime=?title=?tags=?;'
+    return query(_sql, value);
+  }
+  //更新文章评论数
+  updatePostComment = (value) => {
+    let _sql = `update posts set comments=? where id=?;`;
+    return query(_sql, value);
+  }
+  
 }
 
 export default new Methods();
