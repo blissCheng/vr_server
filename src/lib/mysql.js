@@ -59,7 +59,7 @@ class Methods {
   }
   //新增文章
   insertPost = (value) => {
-    let _sql = 'insert into posts set name=?createTime=?title=?tags=?;'
+    let _sql = 'insert into posts set name=?moment=?title=?tags=?;'
     return query(_sql, value);
   }
   //更新文章评论数
@@ -67,7 +67,11 @@ class Methods {
     let _sql = `update posts set comments=? where id=?;`;
     return query(_sql, value);
   }
-  
+  //更新浏览数
+  updatePostPv = (value) => {
+    let _sql = 'update posts set pv=? where id=?;';
+    return query(_sql, value);
+  }
 }
 
 export default new Methods();

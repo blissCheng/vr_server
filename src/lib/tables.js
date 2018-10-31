@@ -12,7 +12,8 @@ const tables = {
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     title TEXT(0) NOT NULL,
-    createTime VARCHAR(100) NOT NULL,
+    tags VARCHAR(100) NOT NULL,
+    moment VARCHAR(100) NOT NULL,
     comments VARCHAR(200) NOT NULL DEFAULT '0',
     pv VARCHAR(40) NOT NULL DEFAULT '0',
     PRIMARY KEY (id)
