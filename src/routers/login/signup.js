@@ -17,32 +17,34 @@ router.post('/signup', async(ctx, next) => {
   await userModel.findUser(user.name)
     .then(async(result) => {
       if (result.length > 0) {
-        try {
-          throw Error('用户已存在')
-        } catch (err) {
-          console.log(err)
+        ctx.status = 202;
+        ctx.body = {
+          success: false,
+          msg: '用户已存在'
         }
       } else if(user.pass !== user.repeatpass || user.pass === '') {
+        ctx.status = 202;
         ctx.body = {
-          data: 2
+          success: false,
+          msg: '无效密码'
         };
-        console.log('密码无效');
       } else {
         let base64Data = user.avator.replace(/^data:image\/\w+;base64,/, "");
-        let dataBuffer = new Buffer(base64Data, 'base64');
+        let dataBuffer = Buffer.from(base64Data, 'base64');
         let getName = Number(Math.random().toString().substr(3).toString(36) + Date.now())
 
-        await fs.watchFile('../../public/images' + getName + '.png', dataBuffer, (err) => {
+        fs.writeFile('./src/public/images/' + getName + '.png', dataBuffer, (err) => {
           if (err) throw err;
-          console.log('头像保存成功');
+          console.log('头像保存成功')
         });
 
         await userModel.insertUser(
-          [user.name, md5(user.pass), getName, moment.format('YYYY-MM-DD HH:mm:ss')]
+          [user.name, user.pass, getName, moment().format('YYYY-MM-DD HH:mm:ss')]
         ).then((res) => {
           console.log('用户注册成功');
           ctx.body = {
-            data: 3
+            success: true,
+            msg: '用户注册成功'
           };
         })
       }

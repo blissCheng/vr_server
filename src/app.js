@@ -8,6 +8,7 @@ import cors from 'koa2-cors';
 import config from './config/default.js';
 //routers
 import signupRouter from './routers/login/signup.js';
+import signinRouter from './routers/login/signin.js';
 //
 const path = require('path');
 const app = new Koa();
@@ -43,7 +44,9 @@ app.use(staticCache(path.join(__dirname, './images'), { dynamic: true }, {
 app.use(bodyParser());
 
 //路由
-app.use(signupRouter.routes());
+app
+  .use(signupRouter.routes())
+  .use(signinRouter.routes());
 
 app.listen(9000);
 
