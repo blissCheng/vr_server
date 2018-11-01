@@ -33,42 +33,42 @@ const createTable = (sql, values) => {
   return query(sql, [])
 };
 
-//建表
-for (i in tables) {
-  createTable(tables[i])
-}
+tables.forEach((v) => {
+  createTable(v);
+})
 
 class Methods {
   constructor() {
 
   }
+  
   //注册用户
-  insertUser = (value) => {
+  insertUser(value) {
     let _sql = 'insert into users set name=?,pass=?,avator=?,moment=?;';
     return query(_sql, value);
   };
   //删除用户
-  deleteUser = (id) => {
-    let _sql = `delete from users where id=${id};`;
+  deleteUser(id) {
+    let _sql = `delete from users where id="${id}";`;
     return query(_sql)
   }
   //查找用户
-  findUser = (name) => {
-    let _sql = `select * from users where name=${name};`;
+  findUser(name) {
+    let _sql = `select * from users where name="${name}";`;
     return query(_sql)
   }
   //新增文章
-  insertPost = (value) => {
+  insertPost(value) {
     let _sql = 'insert into posts set name=?moment=?title=?tags=?;'
     return query(_sql, value);
   }
   //更新文章评论数
-  updatePostComment = (value) => {
+  updatePostComment(value) {
     let _sql = `update posts set comments=? where id=?;`;
     return query(_sql, value);
   }
   //更新浏览数
-  updatePostPv = (value) => {
+  updatePostPv(value) {
     let _sql = 'update posts set pv=? where id=?;';
     return query(_sql, value);
   }

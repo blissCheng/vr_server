@@ -1,5 +1,6 @@
-const tables = {
-  users: `create table if no exists users(
+const tables = [
+  //users
+  `create table if not exists users(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     pass VARCHAR(100) NOT NULL,
@@ -7,8 +8,8 @@ const tables = {
     moment VARCHAR(100) NOT NULL,
     PRIMARY KEY (id)
   );`,
-
-  posts: `create table if no exists posts(
+  //posts
+  `create table if not exists posts(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     title TEXT(0) NOT NULL,
@@ -18,8 +19,8 @@ const tables = {
     pv VARCHAR(40) NOT NULL DEFAULT '0',
     PRIMARY KEY (id)
   );`,
-
-  comment: `create table if no exists comment(
+  //comment
+  `create table if not exists comment(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     content TEXT(0) NOT NULL,
@@ -28,6 +29,5 @@ const tables = {
     avator VARCHAR(40) NOT NULL,
     PRIMARY KEY (id)
   );`
-}
-
+]
 export default tables;

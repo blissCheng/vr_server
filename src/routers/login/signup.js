@@ -13,7 +13,7 @@ router.post('/signup', async(ctx, next) => {
     pass: ctx.request.body.password,
     repeatpass: ctx.request.body.repeatpass,
     avator: ctx.request.body.avator
-  }
+  };
   await userModel.findUser(user.name)
     .then(async(result) => {
       if (result.length > 0) {

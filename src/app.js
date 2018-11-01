@@ -3,10 +3,12 @@ import bodyParser from 'koa-bodyparser'; //表单解析
 import session from 'koa-session-minimal';
 import MysqlStore from 'koa-mysql-session';
 import staticCache from 'koa-static-cache';
-import bodyParser from 'koa-bodyparser';
 import Router from 'koa-router';
 import cors from 'koa2-cors';
-import config from './config/default';
+import config from './config/default.js';
+//routers
+import signupRouter from './routers/login/signup.js';
+//
 const path = require('path');
 const app = new Koa();
 const router = new Router();
@@ -38,12 +40,10 @@ app.use(staticCache(path.join(__dirname, './images'), { dynamic: true }, {
 }));
 
 //解析表单
-app.use(bodyParser({
-  formLimit: '1mb'
-}));
+app.use(bodyParser());
 
 //路由
-app.use(require('./routers/login/signup.js').routes());
+app.use(signupRouter.routes());
 
 app.listen(9000);
 
