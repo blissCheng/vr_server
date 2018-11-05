@@ -14,8 +14,6 @@ import loginoutRouter from './routers/login/loginout.js';
 //
 const path = require('path');
 const app = new Koa();
-const router = new Router();
-
 const sessionValidity = 24 * 60 * 60;
 
 //session存储配置
@@ -50,7 +48,7 @@ app.use(staticCache(path.join(__dirname, './images'), { dynamic: true }, {
 //解析表单
 app.use(bodyParser());
 
-//拦截response body， 验证session;
+//验证session， 拦截response;
 app.use(async (ctx, next) => {
   const cookie = 'USER_SID:' + ctx.cookies.get('USER_SID');
   await next();

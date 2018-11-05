@@ -1,5 +1,4 @@
 import Router from 'koa-router';
-import md5 from 'md5';
 import userModel from '../../lib/mysql.js';
 
 const router = new Router();

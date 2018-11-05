@@ -68,7 +68,22 @@ class Methods {
   }
   //新增文章
   insertPost(value) {
-    let _sql = 'insert into posts set name=?moment=?title=?tags=?;'
+    let _sql = 'insert into posts set name=?moment=?title=?tags=?;';
+    return query(_sql, value);
+  }
+  //查询文章
+  findPosts() {
+    let _sql = `select * from posts;`;
+    return query(_sql);
+  }
+  //根据id查找文章
+  findPostById(id) {
+    let _sql = `select * from posts where id="${id}";`;
+    return query(_sql);
+  }
+  //更新文章浏览数
+  updatePostView(value) {
+    let _sql = `update posts set pv=? where id=?;`;
     return query(_sql, value);
   }
   //更新文章评论数
