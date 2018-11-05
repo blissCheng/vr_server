@@ -41,7 +41,16 @@ class Methods {
   constructor() {
 
   }
-  
+  //删除session
+  deleteSession(id) {
+    let _sql = `delete from _mysql_session_store where id="${id}"`;
+    return query(_sql);
+  };
+  //查询session
+  findSession(id) {
+    let _sql = `select * from _mysql_session_store where id="${id}"`;
+    return query(_sql);
+  };
   //注册用户
   insertUser(value) {
     let _sql = 'insert into users set name=?,pass=?,avator=?,moment=?;';

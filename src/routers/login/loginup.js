@@ -7,7 +7,7 @@ const fs = require('fs');
 
 const router = new Router();
 
-router.post('/signup', async(ctx, next) => {
+router.post('/loginup', async(ctx, next) => {
   let user = {
     name: ctx.request.body.name,
     pass: ctx.request.body.password,

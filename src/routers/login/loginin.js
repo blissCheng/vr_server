@@ -4,7 +4,7 @@ import userModel from '../../lib/mysql.js';
 
 const router = new Router();
 
-router.post('/signin', async(ctx, next) => {
+router.post('/loginin', async(ctx, next) => {
   let user = {
     name: ctx.request.body.name,
     password: ctx.request.body.password
@@ -18,7 +18,8 @@ router.post('/signin', async(ctx, next) => {
           success: true,
           msg: '登录成功',
           data: res[0]
-        }
+        },
+        ctx.session.username = res[0].name;
       } else {
         ctx.status = 400,
         ctx.body = {
