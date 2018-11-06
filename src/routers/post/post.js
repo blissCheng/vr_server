@@ -14,6 +14,11 @@ router.post('/system/posts/insert', async(ctx, next) => {
       msg: '新增文章成功',
       data: res[0]
     }
+  }).catch((err) => {
+    console.log(err);
+    ctx.body = {
+      msg: err
+    }
   });
 });
 //查找分页文章
@@ -25,6 +30,11 @@ router.post('/system/posts', async(ctx, next) => {
         success: true,
         msg: '查询成功',
         data: res
+      }
+    }).catch((err) => {
+      console.log(err);
+      ctx.body = {
+        msg: err
       }
     })
 });
@@ -45,6 +55,9 @@ router.get('/system/posts/:id', async(ctx, next) => {
         });
     }).catch((err) => {
       console.log(err);
+      ctx.body = {
+        msg: err
+      }
     })
 });
 

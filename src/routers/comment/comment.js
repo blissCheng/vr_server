@@ -15,6 +15,9 @@ router.get('/system/comments', async(ctx, next) => {
       }
     }).catch((err) => {
       console.log(err);
+      ctx.body = {
+        msg: err
+      }
     })
 });
 //新增评论
@@ -33,7 +36,10 @@ router.post('/system/comments/insert', async(ctx, next) => {
       data: res[0]
     };
   }).catch((err) => {
-    console.log(err)
+    console.log(err);
+    ctx.body = {
+      msg: err
+    }
   });
 });
 

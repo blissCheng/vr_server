@@ -102,8 +102,8 @@ class Methods {
     return query(_sql);
   }
   //添加回复评论
-  replyComment(value) {
-    let _sql = `insert into replys set primary_name?,secondary_name?,commentId?,primary_avator?,secondary_avator?,content?,moment?;`;
+  insertReply(value) {
+    let _sql = `insert into replys set primaryName?,secondaryName?,commentId?,primaryAvator?,secondaryAvator?,content?,moment?;`;
     return query(_sql);
   }
   //获取全部评论

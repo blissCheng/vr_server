@@ -32,11 +32,11 @@ const tables = [
   //replys
   `create table if not exists replys(
     id INT NOT NULL AUTO_INCREMENT,
-    primary_name VARCHAR(100) NOT NULL,
-    secondary_name VARCHAR(100) NOT NULL,
+    primaryName VARCHAR(100) NOT NULL,
+    secondaryName VARCHAR(100) NOT NULL,
     commentId VARCHAR(40) NOT NULL,
-    primary_avator VARCHAR(40) NOT NULL,
-    secondart_avator VARCHAR(40) NOT NULL,
+    primaryAvator VARCHAR(40) NOT NULL,
+    secondartAvator VARCHAR(40) NOT NULL,
     content TEXT(0) NOT NULL,
     moment VARCHAR(40) NOT NULL,
     PRIMARY KEY (id)
