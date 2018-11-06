@@ -2,7 +2,7 @@ import Router from 'koa-router';
 
 const router = new Router();
 
-router.get('/loginout', async(ctx, next) => {
+router.get('/loginOut', async(ctx, next) => {
   ctx.session = {};
   ctx.body = {
     success: true,

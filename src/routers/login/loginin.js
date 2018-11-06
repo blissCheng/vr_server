@@ -3,7 +3,7 @@ import userModel from '../../lib/mysql.js';
 
 const router = new Router();
 
-router.post('/loginin', async(ctx, next) => {
+router.post('/loginIn', async(ctx, next) => {
   let user = {
     name: ctx.request.body.name,
     password: ctx.request.body.password
@@ -26,7 +26,9 @@ router.post('/loginin', async(ctx, next) => {
           msg: '账号或密码不正确'
         }
       }
-    })
+    }).catch((err) => {
+      console.log(err);
+    });
 });
 
 export default router;

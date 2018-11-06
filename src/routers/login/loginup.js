@@ -7,7 +7,7 @@ const fs = require('fs');
 
 const router = new Router();
 
-router.post('/loginup', async(ctx, next) => {
+router.post('/loginUp', async(ctx, next) => {
   let user = {
     name: ctx.request.body.name,
     pass: ctx.request.body.password,
@@ -48,7 +48,9 @@ router.post('/loginup', async(ctx, next) => {
           };
         })
       }
-    })
+    }).catch((err) => {
+      console.log(err);
+    });
 });
 
 export default router;

@@ -5,12 +5,14 @@ import MysqlStore from 'koa-mysql-session';
 import staticCache from 'koa-static-cache';
 import Router from 'koa-router';
 import cors from 'koa2-cors';
-import config from './config/default.js';
-import userModel from './lib/mysql.js';
+import config from './config/default';
+import userModel from './lib/mysql';
 //routers
-import loginupRouter from './routers/login/loginup.js';
-import logininRouter from './routers/login/loginin.js';
-import loginoutRouter from './routers/login/loginout.js';
+import loginUpRouter from './routers/login/loginup';
+import loginInRouter from './routers/login/loginin';
+import loginOutRouter from './routers/login/loginout';
+import postRouter from './routers/post/post';
+import commentRouter from './routers/comment/comment';
 //
 const path = require('path');
 const app = new Koa();
@@ -56,7 +58,7 @@ app.use(async (ctx, next) => {
   await userModel.findSession(cookie)
     .then(async (res) => {
       
-      const validity = (res.length < 1 || new Date() - res[0].expires > sessionValidity) && ctx.path !== '/loginin' && ctx.path !== '/loginup';
+      const validity = (res.length < 1 || new Date() - res[0].expires > sessionValidity) && ctx.path !== '/loginIn' && ctx.path !== '/loginUp';
       if (validity) {
         ctx.status = 401;
         ctx.body = {
@@ -79,9 +81,11 @@ app.use(async(ctx, next) => {
 });
 //路由
 app
-  .use(loginupRouter.routes())
-  .use(logininRouter.routes())
-  .use(loginoutRouter.routes());
+  .use(loginUpRouter.routes())
+  .use(loginInRouter.routes())
+  .use(loginOutRouter.routes())
+  .use(postRouter.routes())
+  .use(commentRouter.routes());
 
 app.listen(9000);
 

@@ -20,13 +20,25 @@ const tables = [
     PRIMARY KEY (id)
   );`,
   //comment
-  `create table if not exists comment(
+  `create table if not exists comments(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     content TEXT(0) NOT NULL,
     moment VARCHAR(40) NOT NULL,
-    postid VARCHAR(40) NOT NULL,
+    postId VARCHAR(40) NOT NULL,
     avator VARCHAR(40) NOT NULL,
+    PRIMARY KEY (id)
+  );`,
+  //replys
+  `create table if not exists replys(
+    id INT NOT NULL AUTO_INCREMENT,
+    primary_name VARCHAR(100) NOT NULL,
+    secondary_name VARCHAR(100) NOT NULL,
+    commentId VARCHAR(40) NOT NULL,
+    primary_avator VARCHAR(40) NOT NULL,
+    secondart_avator VARCHAR(40) NOT NULL,
+    content TEXT(0) NOT NULL,
+    moment VARCHAR(40) NOT NULL,
     PRIMARY KEY (id)
   );`
 ]

@@ -68,12 +68,17 @@ class Methods {
   }
   //新增文章
   insertPost(value) {
-    let _sql = 'insert into posts set name=?moment=?title=?tags=?;';
+    let _sql = 'insert into posts set name=?,moment=?,title=?,tags=?;';
     return query(_sql, value);
   }
   //查询文章
   findPosts() {
     let _sql = `select * from posts;`;
+    return query(_sql);
+  }
+  //查询分页文章
+  findPostsByPage(pageNo, pageSize) {
+    let _sql = `select * from posts limit ${(pageNo - 1) * 10},${pageSize};`;
     return query(_sql);
   }
   //根据id查找文章
@@ -87,14 +92,29 @@ class Methods {
     return query(_sql, value);
   }
   //更新文章评论数
-  updatePostComment(value) {
-    let _sql = `update posts set comments=? where id=?;`;
-    return query(_sql, value);
+  updatePostComment(id) {
+    let _sql = `update posts set comments=comments+1 where id="${id}";`;
+    return query(_sql);
   }
-  //更新浏览数
-  updatePostPv(value) {
-    let _sql = 'update posts set pv=? where id=?;';
-    return query(_sql, value);
+  //发表评论
+  insertComment(value) {
+    let _sql = `insert into comments set name=?,content=?,moment=?,postId=?,avator=?;`;
+    return query(_sql);
+  }
+  //添加回复评论
+  replyComment(value) {
+    let _sql = `insert into replys set primary_name?,secondary_name?,commentId?,primary_avator?,secondary_avator?,content?,moment?;`;
+    return query(_sql);
+  }
+  //获取全部评论
+  findComments() {
+    let _sql = `select * from comments`;
+    return query(_sql);
+  }
+  //根据评论id获取回复内容
+  findReplyById(id) {
+    let _sql = `select * from replys where commentId="${id}";`;
+    return query(_sql);
   }
 }
 
