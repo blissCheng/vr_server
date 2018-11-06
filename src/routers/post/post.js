@@ -7,7 +7,7 @@ const router = new Router();
 router.post('/system/posts/insert', async(ctx, next) => {
   const post = ctx.request.body;
   await userModel.insertPost(
-    [post.name, moment().format('YYYY-MM-DD HH:mm:ss'), post.title, post.tags]
+    [moment().format('YYYY-MM-DD HH:mm:ss'), post.title, post.tags]
   ).then(async(res) => {
     ctx.body = {
       success: true,

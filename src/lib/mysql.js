@@ -68,7 +68,7 @@ class Methods {
   }
   //新增文章
   insertPost(value) {
-    let _sql = 'insert into posts set name=?,moment=?,title=?,tags=?;';
+    let _sql = 'insert into posts set moment=?,title=?,tags=?;';
     return query(_sql, value);
   }
   //查询文章
