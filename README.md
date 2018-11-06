@@ -139,7 +139,7 @@ method: GET
 response: Array(#reply)
 ```
 
-### 新增回复
+### 新增回复 /system/replys/insert
 
 ```
 method: POST
