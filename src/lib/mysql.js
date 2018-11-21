@@ -10,6 +10,7 @@ const pool = mysql.createPool({
 });
 
 const query = (sql, values) => {
+  console.log(sql);
   return new Promise((resolve, reject) => {
     pool.getConnection((err, connection) => {
       if (err) {
@@ -39,16 +40,16 @@ tables.forEach((v) => {
 
 class Methods {
   constructor() {
-
+    
   }
   //删除session
   deleteSession(id) {
-    let _sql = `delete from _mysql_session_store where id="${id}"`;
+    let _sql = `delete from _mysql_session_store where id=${id}`;
     return query(_sql);
   };
   //查询session
   findSession(id) {
-    let _sql = `select * from _mysql_session_store where id="${id}"`;
+    let _sql = `select * from _mysql_session_store where id=${id}`;
     return query(_sql);
   };
   //注册用户
@@ -58,7 +59,7 @@ class Methods {
   };
   //删除用户
   deleteUser(id) {
-    let _sql = `delete from users where id="${id}";`;
+    let _sql = `delete from users where id=${id};`;
     return query(_sql)
   }
   //查找用户
@@ -68,7 +69,7 @@ class Methods {
   }
   //新增文章
   insertPost(value) {
-    let _sql = 'insert into posts set moment=?,title=?,tags=?;';
+    let _sql = 'insert into posts set moment=?,title=?,tag=?,category=?,introduce=?,content=?,time=?,name=?;';
     return query(_sql, value);
   }
   //查询文章
@@ -83,7 +84,7 @@ class Methods {
   }
   //根据id查找文章
   findPostById(id) {
-    let _sql = `select * from posts where id="${id}";`;
+    let _sql = `select * from posts where id=${id};`;
     return query(_sql);
   }
   //更新文章浏览数
@@ -93,7 +94,7 @@ class Methods {
   }
   //更新文章评论数
   updatePostComment(id) {
-    let _sql = `update posts set comments=comments+1 where id="${id}";`;
+    let _sql = `update posts set comments=comments+1 where id=${id};`;
     return query(_sql);
   }
   //发表评论
@@ -113,7 +114,7 @@ class Methods {
   }
   //根据评论id获取回复内容
   findReplyById(id) {
-    let _sql = `select * from replys where commentId="${id}";`;
+    let _sql = `select * from replys where commentId=${id};`;
     return query(_sql);
   }
 }

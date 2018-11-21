@@ -18,6 +18,12 @@ const path = require('path');
 const app = new Koa();
 const sessionValidity = 24 * 60 * 60;
 
+//判断是否为post模块接口
+const isPosts = (url) => {
+  const fragments = url.split('/');
+  return fragments.indexOf('posts') > -1;
+}
+
 //session存储配置
 const sessionMysqlConfig = {
   user: config.database.USERNAME,
@@ -54,7 +60,9 @@ app.use(bodyParser());
 app.use(async (ctx, next) => {
   const cookie = 'USER_SID:' + ctx.cookies.get('USER_SID');
   await next();
-
+  if (isPosts(ctx.path)) {
+    return
+  };
   await userModel.findSession(cookie)
     .then(async (res) => {
       

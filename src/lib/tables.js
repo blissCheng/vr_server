@@ -12,7 +12,12 @@ const tables = [
   `create table if not exists posts(
     id INT NOT NULL AUTO_INCREMENT,
     title TEXT(0) NOT NULL,
-    tags VARCHAR(100) NOT NULL,
+    tag VARCHAR(100) NOT NULL,
+    time VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    content TEXT(0) NOT NULL,
+    introduce TEXT(0) NOT NULL,
     moment VARCHAR(100) NOT NULL,
     comments INT NOT NULL DEFAULT 0,
     pv INT NOT NULL DEFAULT 0,
