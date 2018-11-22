@@ -85,8 +85,10 @@ router.post('/system/posts', async(ctx, next) => {
           switch (params.type) {
             case 1:
               ctx.body.data = divideByCategory(res);
+              break;
             case 2:
               ctx.body.data = divideByTag(res);
+              break;
           }
         }
       }).catch((err) => {
@@ -100,14 +102,16 @@ router.get('/system/posts/:id', async(ctx, next) => {
   await userModel.findPostById(ctx.params.id)
     .then(async(res) => {
       //更新文章浏览数
-      await userModel.updatePostView([ctx.params.id])
+      const pv = res[0].pv + 1;
+      await userModel.updatePostView([pv, ctx.params.id])
         .then((result) => {
           ctx.status = 200;
           ctx.body = {
             success: true,
             msg: '查询成功',
-            data: result[0]
+            data: res[0]
           };
+          ctx.body.data.pv += 1;
         });
     }).catch((err) => {
       console.log(err);
