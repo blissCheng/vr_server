@@ -18,8 +18,6 @@ const path = require('path');
 const app = new Koa();
 const sessionValidity = 24 * 60 * 60;
 
-console.log('avvv');
-
 //判断是否为post模块接口
 const isPosts = (url) => {
   const fragments = url.split('/');
