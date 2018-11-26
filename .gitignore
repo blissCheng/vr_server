@@ -2,4 +2,3 @@ node_modules/
 .idea/
 .tmp/
 .vscode
-deploy.js
