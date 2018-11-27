@@ -61,10 +61,17 @@ params: 无
 :----:|:------:|:----:
 id      | int      | 主键	
 title   | string   | 标题
-tags    | string   | 标签
-moment  | YY-MM-DD | 创建时间
+tag     | string   | 标签
+moment  | YY-MM-DD | 上传时间
 comments| string   | 评论数
 pv      | string   | 浏览数
+time    | string   | 创建时间
+name    | string   | 文章名
+catrgory| string   | 分类
+content | text     | 内容
+introduce| text    | 简介
+
+
 
 
 ### 新增文章 /system/posts/insert
@@ -75,11 +82,11 @@ params: title, tags
 response: #post
 ```
 
-### 分页文章信息 /system/posts
+### 获取全部文章信息 /system/posts
 
 ```
 method: POST
-params: pageNo, pageSize
+params: 分页（pageNo, pageSize）， 通过tag划分（type: 2）, 通过categroy划分（type: 1）
 response: Array(#post)
 ```
 
